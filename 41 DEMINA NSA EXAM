@@ -1,0 +1,130 @@
+//1--CREATE DIRECTORY AND FILES
+exam@debian:~$ mkdir sales
+exam@debian:~$ cd sales
+exam@debian:~/sales$ mkdir Location1
+exam@debian:~/sales$ cd Location1
+exam@debian:~/sales/Location1$ cat>sales1.txt
+pen
+pencil
+soap^Z
+[1]+  Stopped                 cat > sales1.txt
+exam@debian:~/sales/Location1$ cat>sales2.txt
+stick
+rubber
+book^Z
+[2]+  Stopped                 cat > sales2.txt
+exam@debian:~/sales/Location1$ cat>sales3.txt
+paper
+pen
+easer^Z
+[3]+  Stopped                 cat > sales3.txt
+exam@debian:~/sales/Location1$ cd ..
+exam@debian:~/sales$ mkdir Location2
+exam@debian:~/sales$ cd Location2
+exam@debian:~/sales/Location2$ cat>pur1.txt
+pen
+pencil
+^Z
+[4]+  Stopped                 cat > pur1.txt
+exam@debian:~/sales/Location2$ cat>pur2.txt
+
+paper
+book^Z
+[5]+  Stopped                 cat > pur2.txt
+exam@debian:~/sales/Location2$ cd ..
+exam@debian:~/sales$ mkdir Location3
+exam@debian:~/sales$ cd Location3
+exam@debian:~/sales/Location3$ cat>stock1.txt
+pen
+pencil
+paper
+book
+easer
+stick
+scale
+bag
+bottle
+dress
+mask^Z
+[6]+  Stopped                 cat > stock1.txt
+exam@debian:~/sales/Location3$ cat>stock2.txt
+sanitizer
+mask
+tissue^Z
+[7]+  Stopped                 cat > stock2.txt
+exam@debian:~/sales/Location3$ cd ..
+
+//Q1
+exam@debian:~/sales/Location2$ cat pur1.txt pur2.txt>pur3.txt
+exam@debian:~/sales/Location2$ ls
+pur1.txt  pur2.txt  pur3  pur3.txt
+
+//Q2
+exam@debian:~/sales/Location2$ cp pur3.txt ~/sales/Location3/stock3.txt
+exam@debian:~/sales/Location2$ cd ..
+exam@debian:~/sales$ cd Location3
+exam@debian:~/sales/Location3$ ls
+stock1.txt  stock2.txt  stock3.txt
+exam@debian:~/sales/Location3$ cat stock3.txt
+pen
+pencil
+paper
+
+//Q3
+exam@debian:~/sales/Location3$ chmod  +rwx stock3.txt
+
+//Q4
+exam@debian:~/sales/Location3$ head -10 stock1.txt
+pen
+pencil
+paper
+book
+easer
+stick
+scale
+bag
+bottle
+dress
+
+//Q5
+exam@debian:~/sales$ ls -al
+total 20
+drwxr-xr-x  5 exam exam 4096 Oct  8 14:01 .
+drwxr-xr-x 18 exam exam 4096 Oct  8 13:57 ..
+drwxr-xr-x  2 exam exam 4096 Oct  8 13:59 Location1
+drwxr-xr-x  2 exam exam 4096 Oct  8 14:05 Location2
+drwxr-xr-x  2 exam exam 4096 Oct  8 14:11 Location3
+exam@debian:~/sales$ cd ..
+
+// 2--SHELL SCRIPT CODE
+
+echo "enter the choice"
+read ch
+echo -e "menu \n 1)--volume of sphere-- \n 2)--volume of cube-- \n 3)--volume of cylinder--\n"
+case $ch in
+    
+    1) echo "VOLUME OF SPHERE"
+       echo "enter the radius"
+      read r
+	sphere=`expr 314 \* $r \* $r \* $r`
+      sp=`expr $sphere / 100`
+      spr=`expr 4 \* $sp / 3`
+      echo $spr;;
+    
+    2)  echo "VOLUME OF CUBE"
+	echo "enter the side"
+	read a
+	cube=`expr 4 \*  $a \* $a \* $a`
+       echo $cube;;
+    
+    3)echo "VOLUME OF CYNLINDER"
+	echo "enter the radius"
+      read r
+      echo "enter the height"
+      read h
+      cylin=`expr 314 \* $r \* $r \* $h`
+      cylinder=`expr $cylin / 100`
+      echo $cylinder;;
+esac    
+
+
